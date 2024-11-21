@@ -23,6 +23,7 @@ const changeDate = async () => {
   try {
     const res = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&date=${inputValue}`);
     setApodData(res.data);
+    setDate(inputValue);
   } catch (err) {
     console.log('Error fetching APOD data', err);
   }
@@ -78,12 +79,6 @@ useEffect(() => {
 
     fetchData();
   }, []);
-
-  useEffect(() => {
-    if (date !== inputValue) {
-      setDate(inputValue)
-    }
-  }, [inputValue])
 
   useEffect(() => {
     console.log(date)
